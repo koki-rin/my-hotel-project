@@ -1,0 +1,27 @@
+<p>
+  <strong>名前:</strong>
+  <%= @reservation.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @reservation.email %>
+</p>
+
+<p>
+  <strong>日時:</strong>
+  <%= @reservation.datetime %>
+</p>
+
+<p>
+  <strong>人数:</strong>
+  <%= @reservation.body %>
+</p>
+
+<p>
+  <strong>Hotel:</strong>
+  <%= @reservation.hotel.name %>
+</p>
+
+
+<%= link_to 'Back', hotel_path(@hotel) %> |

@@ -1,0 +1,13 @@
+<h1><%= @prefecture.name %>のホテル一覧</h1>
+
+<% @hotels.each do |hotel|%>
+  <p>
+  <%= hotel.name %>
+    <p>
+      <%= hotel.description %>
+    </p>
+    <p>
+      <%= image_tag(hotel.picture_url, width: 150) if hotel.picture.present? %>
+    </p>
+  </p>
+<% end %>

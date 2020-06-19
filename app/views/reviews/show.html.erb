@@ -1,0 +1,23 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @review.name %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @review.body %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @review.rating %>
+</p>
+
+<p>
+  <strong>Hotel:</strong>
+  <%= @review.hotel.id %>
+</p>
+
+
+<%= link_to 'Back', hotel_reviews_path(@hotel) %> |

@@ -1,0 +1,8 @@
+<p>レビューの一覧</p>
+<% @reviews.each do |review| %>
+  <p>
+  <%= review.name %>
+  <%= review.body %>
+  <%= review.rating %>
+  </p>
+<% end %>
