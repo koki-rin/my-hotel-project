@@ -1,0 +1,15 @@
+
+<h2><%= current_user.name %>さんのマイページ</h2>
+
+
+<h4>お気に入りしたホテルの一覧</h4>
+<% @favorite_hotels.each do |hotel| %>
+  <hr>
+  
+  <p><%=link_to 'ホテルの詳細ページへ', hotel_path(hotel.id) %></p>
+
+  
+<% end %><br />
+
+
+<%= link_to "アカウント情報の編集", edit_user_registration_path, :class => 'navbar-link'  %>

@@ -1,39 +1,48 @@
 
-<h1>ホテルの一覧</h1>
-
-<%= search_form_for @q do |f| %>
-
-  <%= f.label :ホテル名 %>
-  <%= f.search_field :name_cont %>
-
-  <%= f.label :都道府県 %>
-  <%= f.search_field :prefecture_name_cont %>
-
-  <%= f.submit '検索', class: "btn btn-primary" %>
-<% end %>
 
 <div class="container">
+
+  <%= search_form_for @q do |f| %>
+
+    <%= f.label :ホテル名 %>
+    <%= f.search_field :name_cont %>
+
+    <%= f.label :都道府県 %>
+    <%= f.search_field :prefecture_name_cont %>
+
+    <%= f.submit '検索', class: "btn btn-outline-success" %>
+  <% end %>
+
   <div class="row">
-    <div class="col-md-3">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <% @hotels.each do |hotel| %>
+      <div class="col-md-3">
+        <div class="card">
+          <img src="<%= hotel.picture_url %>" class="card-img-top" alt="ホテルの写真">
+          <div class="card-body">
 
-          <% @hotels.each do |hotel| %>
-            <p><%= hotel.name %></p>
-            <p><%= hotel.description %></p>
-            <%= image_tag(hotel.picture_url, width: 100) if hotel.picture.present? %>
-            <p><%= hotel.prefecture.name %></p>
+            <% if user_signed_in? %>
+              <% if hotel.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
+               <p><span>お気に入り解除: </span><%=link_to hotel.favorites.count, hotel_favorites_path(hotel.id), method: :delete %></p>
+              <% else %>
+               <p><span>お気に入り登録: </span><%=link_to hotel.favorites.count, hotel_favorites_path(hotel.id), method: :post %></p>
+              <% end %>
+            <% else %>
+             <p><span>お気に入り数: </span><%= hotel.favorites.count %></p>
+            <% end %>
 
-          <% end %>
+            <h5 class="card-title"><%= hotel.name %></h5>
+            <p class="card-text"><%= hotel.description %></p>
 
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">
+              <p>Last updated 3 mins ago</p>
+              <p><%= link_to 'ホテルの詳細', hotel_path(hotel) %></p>
+              <p><%= link_to 'レビューの作成', new_hotel_review_path(hotel) %></p>
+            </small>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>

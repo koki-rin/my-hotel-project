@@ -8,7 +8,7 @@ gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 # Use sqlite3 as the database for Active Record
 
 group :development do
-  gem 'sqlite3', '~> 1.3.13'
+  gem 'sqlite3', '~> 1.4'
 end
 
 group :production do
@@ -66,6 +66,7 @@ gem 'rails_admin', '~> 2.0'
 
 gem 'ransack'
 
+gem 'devise'
 
 
 
